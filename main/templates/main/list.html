@@ -7,16 +7,16 @@
         {% csrf_token %}
         <ul>
             {%for item in ls.item_set.all%}
-                {% if item.complete == 1 %}
-                    <li><input type="checkbox",value="clicked",name="c{{item.id}}" checked>{{item.text}}</li>
+                {% if item.complete == True %}
+                    <li><input type="checkbox", value="clicked", name="c{{item.id}}" checked>{{item.text}}</li>
                     {% comment %} <li>{{item.text}}</li> {% endcomment %}
                 {% else %}
-                    <li><input type="checkbox",value="clicked",name="c{{item.id}}">{{item.text}}</li>
+                    <li><input type="checkbox", value="clicked", name="c{{item.id}}">{{item.text}}</li>
                     {% comment %} <li>{{item.text}}</li> {% endcomment %}
                 {%endif%}
             {%endfor%}
         </ul>
-        <button type="submit",name="save", value="save">Save</button>
-        <input type="text" name="new">
-        <button type="submit",name="newItem",value="newItem">Add Item</button>
+        <button type="submit", name="save", value="save">Save</button>
+        <input type="text", name="new">
+        <button type="submit", name="newItem", value="newItem">Add Item</button>
 {%endblock%}
