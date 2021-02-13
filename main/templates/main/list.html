@@ -5,18 +5,28 @@
     <h1>{{ls.name}}</h1>
     <form method ="post" action="#">
         {% csrf_token %}
-        <ul>
-            {%for item in ls.item_set.all%}
-                {% if item.complete == True %}
-                    <li><input type="checkbox", value="clicked", name="c{{item.id}}" checked>{{item.text}}</li>
-                    {% comment %} <li>{{item.text}}</li> {% endcomment %}
-                {% else %}
-                    <li><input type="checkbox", value="clicked", name="c{{item.id}}">{{item.text}}</li>
-                    {% comment %} <li>{{item.text}}</li> {% endcomment %}
-                {%endif%}
-            {%endfor%}
-        </ul>
-        <button type="submit", name="save", value="save">Save</button>
-        <input type="text", name="new">
-        <button type="submit", name="newItem", value="newItem">Add Item</button>
+        {%for item in ls.item_set.all%}
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text">
+                    {% if item.complete == True %}
+                        <input type="checkbox", value="clicked", name="c{{item.id}}" checked>
+                        {% comment %} <li>{{item.text}}</li> {% endcomment %}
+                    {% else %}
+                        <input type="checkbox", value="clicked", name="c{{item.id}}">
+                        {% comment %} <li>{{item.text}}</li> {% endcomment %}
+                    {%endif%}
+                </div>
+            </div>
+            <input type="text" , value="{{item.text}}" class="form-control">
+        </div>
+        {%endfor%}
+
+        <div class="input-group mb-4">
+            <input type="text", name="new">
+            <div class="input-group-prepend">
+                <button type="submit", name="newItem", value="newItem", class="btn btn-success">Add Item</button>
+            </div>
+        </div>
+        <button type="submit", name="save", value="save", class="btn btn-success">Save</button>
 {%endblock%}
